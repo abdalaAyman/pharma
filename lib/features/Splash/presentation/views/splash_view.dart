@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../../../../core/utils/assets_data.dart';
 import 'on_boarding_view.dart';
 

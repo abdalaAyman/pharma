@@ -2,20 +2,25 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/helpers/extensions.dart';
-import 'package:flutter_application_2/core/routing/routes.dart';
 import 'package:flutter_application_2/core/widgets/custom_bottom.dart';
-
+import 'package:flutter_application_2/features/Home/presentation/manager/get_medicin_services.dart';
 import '../../../../constants.dart';
-import '../../../../core/widgets/custom_listTile.dart';
 import 'interacion_view.dart';
 
-class SecondMedicine extends StatelessWidget {
+class SecondMedicine extends StatefulWidget {
   const SecondMedicine({super.key});
 
+  @override
+  State<SecondMedicine> createState() => _SecondMedicineState();
+}
+
+class _SecondMedicineState extends State<SecondMedicine> {
   @override
   Widget build(BuildContext context) {
     String? medicineName1 = '';
     String? medicineName2 = '';
+    String? interactions = '';
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100),
@@ -24,7 +29,7 @@ class SecondMedicine extends StatelessWidget {
           surfaceTintColor: Colors.transparent,
           elevation: 0,
           flexibleSpace:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(
               width: 90,
               child: Padding(
@@ -35,9 +40,11 @@ class SecondMedicine extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 210, child: Image.asset('assets/logos/logo.png')),
-            Container(
-              width: 90,
+            Center(
+              child: SizedBox(
+                  width: 210,
+                  height: 200,
+                  child: Image.asset('assets/logos/logo.png')),
             )
           ]),
           centerTitle: true,
@@ -46,7 +53,7 @@ class SecondMedicine extends StatelessWidget {
       ),
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         child: Container(
           height: double.infinity,
           width: double.infinity,
@@ -58,88 +65,86 @@ class SecondMedicine extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Container(
-                //     height: 150,
-                //     width: 150,
-                //     child: Image.asset('assets/blueintr.png')),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'The First Medicine    ',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: kBlueColor),
-                    ),
-                    SizedBox(
-                      width: 200,
-                      height: 50,
-                      child: TextField(
-                        onChanged: (value) => medicineName1 = value,
-                        decoration: InputDecoration(
-                          hintText: 'Enter the name of the medicine..',
-                          hintStyle: const TextStyle(
-                              fontSize: 12, color: Color(0XFF838383)),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0XFF9DB2CE)),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                Text(
+                  'Interaction between medicines',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: kBlueColor),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text(
-                      'The Second Medicine',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: kBlueColor),
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 200,
-                      child: TextField(
-                        onChanged: (value) => medicineName2 = value,
-                        //  minLines: 1,
-                        decoration: InputDecoration(
-                          hintText: 'Enter the name of the medicine..',
-                          hintStyle: const TextStyle(
-                              fontSize: 12, color: Color(0XFF838383)),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0XFF9DB2CE)),
-                          ),
-                        ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: TextField(
+                    onChanged: (value) => medicineName1 = value,
+                    decoration: InputDecoration(
+                      hintText: 'name of the first medicine..',
+                      hintStyle:
+                          const TextStyle(fontSize: 16, color: kHentGrayColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: kGrayColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: kBlueColor, width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(13))),
                     ),
-                  ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: TextField(
+                    onChanged: (value) => medicineName2 = value,
+                    //  minLines: 1,
+                    decoration: InputDecoration(
+                      hintText: 'name of the second medicine..',
+                      hintStyle:
+                          const TextStyle(fontSize: 16, color: kHentGrayColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: kGrayColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: kBlueColor, width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(13))),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 CustomBottom(
                   buttonName: 'interaction',
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => InteractionView(
-                            Name1: medicineName1 ?? '',
-                            Name2: medicineName2 ?? '',
-                          ),
-                        ));
+                  onPressed: () async {
+                    try {
+                      interactions =
+                          await MedicineDataApiService.getInteraction(
+                              medicineName1 ?? '', medicineName2 ?? '');
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InteractionView(
+                              Name1: medicineName1 ?? '',
+                              Name2: medicineName2 ?? '',
+                              interactions: interactions ?? '',
+                            ),
+                          ));
+                    } catch (e) {
+                      print(e.toString());
+                    }
                   },
                 )
               ],

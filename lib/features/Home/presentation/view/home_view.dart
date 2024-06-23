@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_2/constants.dart';
 import 'category_list.dart';
 import 'category_view.dart';
@@ -35,7 +33,7 @@ class HomeView extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 140),
+                  padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -54,10 +52,10 @@ class HomeView extends StatelessWidget {
                           color: Color.fromARGB(122, 118, 214, 255),
                         )),
                     height: 50,
-                    width: 230,
-                    alignment: Alignment.centerLeft,
+                    width: double.infinity,
+                    alignment: Alignment.center,
                     child: Text(
-                      ' Categories of Diseases',
+                      'Categories of Diseases',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,

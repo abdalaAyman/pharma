@@ -117,16 +117,6 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
               ),
             ],
           ),
-          // if (_pageIndex == onBoardingList.length - 1)
-          //   Align(
-          //     alignment: Alignment.bottomRight,
-          //     child: Padding(
-          //         padding: const EdgeInsets.only(bottom: 20, right: 8),
-          //         child: IconButton(
-          //           icon: ImageIcon(AssetImage("assets/logos/nextbutton.png")),
-          //           onPressed: () {},
-          //         )),
-          //   ),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Row(

@@ -37,8 +37,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const AlarmView(),
         );
-      case Routes.FindMedicine:
-        return MaterialPageRoute(builder: (_) => FindMedicine());
+      // case Routes.FindMedicine:
+      //   return MaterialPageRoute(builder: (_) => FindMedicine());
       case Routes.SecondMedicine:
         return MaterialPageRoute(
           builder: (_) => const SecondMedicine(),
@@ -48,6 +48,7 @@ class AppRouter {
           builder: (_) => InteractionView(
             Name1: '',
             Name2: '',
+            interactions: '',
           ),
         );
       case Routes.PreviewViewBody:
@@ -55,6 +56,7 @@ class AppRouter {
           builder: (_) => const PreviewViewBody(
             name: '',
             pageName: '',
+            details: '',
           ),
         );
       default:

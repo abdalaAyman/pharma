@@ -1,14 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/helpers/extensions.dart';
 import 'package:flutter_application_2/features/Home/presentation/view/home_view.dart';
 import 'package:flutter_application_2/features/Home/presentation/view/search_view.dart';
-
 import '../../../../constants.dart';
 import '../../../../core/routing/routes.dart';
 import 'alarm_veiw.dart';
-import 'find_medicine.dart';
 import 'save_view.dart';
 
 class MainView extends StatefulWidget {

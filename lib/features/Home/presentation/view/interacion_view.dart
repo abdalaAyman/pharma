@@ -7,7 +7,12 @@ import 'package:flutter_application_2/core/helpers/extensions.dart';
 class InteractionView extends StatelessWidget {
   final String Name1;
   final String Name2;
-  const InteractionView({super.key, required this.Name1, required this.Name2});
+  final String interactions;
+  const InteractionView(
+      {super.key,
+      required this.Name1,
+      required this.Name2,
+      required this.interactions});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,7 @@ class InteractionView extends StatelessWidget {
           surfaceTintColor: Colors.transparent,
           elevation: 0,
           flexibleSpace:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(
               width: 90,
               child: Padding(
@@ -29,9 +34,11 @@ class InteractionView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 210, child: Image.asset('assets/logos/logo.png')),
-            Container(
-              width: 90,
+            Center(
+              child: SizedBox(
+                  width: 210,
+                  height: 200,
+                  child: Image.asset('assets/logos/logo.png')),
             )
           ]),
           centerTitle: true,
@@ -79,21 +86,22 @@ class InteractionView extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 15,
             ),
             Container(
               width: double.infinity,
               constraints: BoxConstraints(maxHeight: 600),
               decoration: BoxDecoration(
                   border: Border.all(
-                      color: Color.fromRGBO(216, 250, 207, 0.65), width: 5),
+                      color: Color.fromRGBO(167, 206, 247, 0.647), width: 5),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  'It is used to treat Type I diabetes ( insulin-dependent), and to control the condition of hyperglycemia in Type II diabetes ( non-insulin-dependent).',
+                  interactions,
+                  textDirection: TextDirection.rtl,
                   style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w700,
                       color: Colors.black),
                 ),

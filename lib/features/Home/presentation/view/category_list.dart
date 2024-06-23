@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_2/core/helpers/extensions.dart';
-
-import '../../../../constants.dart';
+import 'package:flutter_application_2/features/Home/model/informations.dart';
+import 'package:flutter_application_2/features/Home/presentation/manager/get_medicin_services.dart';
 
 class CategoryListPage extends StatelessWidget {
   final String PageName;
@@ -17,7 +17,7 @@ class CategoryListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(100),
         child: AppBar(
           automaticallyImplyLeading: false,
           surfaceTintColor: Colors.transparent,
@@ -29,7 +29,7 @@ class CategoryListPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 40, right: 40),
                 child: IconButton(
-                  icon: ImageIcon(AssetImage('assets/backarrow.png')),
+                  icon: const ImageIcon(AssetImage('assets/backarrow.png')),
                   onPressed: () => context.pop(),
                 ),
               ),
@@ -58,27 +58,58 @@ class CategoryListPage extends StatelessWidget {
                           color: Colors.grey.withOpacity(0.3),
                           spreadRadius: 3,
                           blurRadius: 5,
-                          offset: Offset(2, 2),
+                          offset: const Offset(2, 2),
                         )
                       ],
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(5),
                       ),
                       border: Border.all(
-                        color: Color.fromARGB(122, 118, 214, 255),
+                        color: const Color.fromARGB(122, 118, 214, 255),
                       )),
                   height: 50,
                   width: 230,
                   alignment: Alignment.centerLeft,
                   child: Text(
                     PageName,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
+              FutureBuilder<List<MedicineModel>>(
+                  future: MedicineDataApiService.getAllMedicines(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<MedicineModel> categories = snapshot.data!;
+                      List<MedicineModel> filterMedicines = [];
+
+                      if (categories.isNotEmpty) {
+                        return ListView.builder(
+                          itemCount: filterMedicines.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Text('${filterMedicines[index].category}');
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('Get Medicines Error');
+                      } else {
+                        return Center(
+                            child: Text(
+                          'No Medicines Yet',
+                          style: TextStyle(color: Colors.black),
+                        ));
+                      }
+                    } else {
+                      return Center(
+                          child: CircularProgressIndicator(
+                        backgroundColor: Colors.blueAccent,
+                        color: Colors.black,
+                      ));
+                    }
+                  }),
             ],
           ),
         ),
@@ -86,3 +117,4 @@ class CategoryListPage extends StatelessWidget {
     );
   }
 }
+////////http://pharmaquick1.runasp.net/api/Categories/1
