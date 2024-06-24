@@ -49,7 +49,7 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MainView()),
                 );
@@ -129,7 +129,7 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                           duration: Duration(milliseconds: 500),
                           curve: Curves.linear);
                     } else {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const MainView()),

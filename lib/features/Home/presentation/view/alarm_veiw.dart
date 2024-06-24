@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/constants.dart';
 import 'package:flutter_application_2/features/Home/presentation/view/widgets/clock.dart';
 
 class AlarmView extends StatelessWidget {
@@ -11,6 +12,7 @@ class AlarmView extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
+        heroTag: UniqueKey(),
         elevation: 0,
         backgroundColor: Colors.transparent,
         child: Container(
@@ -19,6 +21,7 @@ class AlarmView extends StatelessWidget {
           child: Icon(
             Icons.add,
             size: 40,
+            color: Colors.white,
           ),
           decoration: BoxDecoration(
               boxShadow: [
@@ -30,7 +33,10 @@ class AlarmView extends StatelessWidget {
                 ),
               ],
               shape: BoxShape.circle,
-              gradient: LinearGradient(colors: [Colors.red, Colors.blue])),
+              gradient: LinearGradient(colors: [
+                kBlueColor,
+                const Color.fromARGB(255, 120, 183, 235)
+              ])),
         ),
         onPressed: () {},
       ),

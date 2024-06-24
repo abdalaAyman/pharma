@@ -20,6 +20,7 @@ class _SecondMedicineState extends State<SecondMedicine> {
     String? medicineName1 = '';
     String? medicineName2 = '';
     String? interactions = '';
+    bool isloading = false;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -128,6 +129,18 @@ class _SecondMedicineState extends State<SecondMedicine> {
                 CustomBottom(
                   buttonName: 'interaction',
                   onPressed: () async {
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return Center(
+                            child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                    color: Colors.white)),
+                          );
+                        });
                     try {
                       interactions =
                           await MedicineDataApiService.getInteraction(
@@ -143,8 +156,29 @@ class _SecondMedicineState extends State<SecondMedicine> {
                             ),
                           ));
                     } catch (e) {
-                      print(e.toString());
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Text('Faild'),
+                                content: SizedBox(
+                                  height: 20,
+                                  child: Center(
+                                    child: Text('$e'),
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text('Close'),
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pop(); // Close the dialog
+                                    },
+                                  ),
+                                ],
+                              ));
                     }
+
+                    Navigator.of(context).pop();
                   },
                 )
               ],

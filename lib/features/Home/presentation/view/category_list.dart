@@ -5,13 +5,15 @@ import 'package:flutter_application_2/core/helpers/extensions.dart';
 import 'package:flutter_application_2/features/Home/model/informations.dart';
 import 'package:flutter_application_2/features/Home/presentation/manager/get_medicin_services.dart';
 
+/**
+ * @description category view (medicines of category)
+ */
 class CategoryListPage extends StatelessWidget {
   final String PageName;
+  final int categoryId;
 
-  const CategoryListPage({
-    super.key,
-    required this.PageName,
-  });
+  const CategoryListPage(
+      {super.key, required this.PageName, required this.categoryId});
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +82,24 @@ class CategoryListPage extends StatelessWidget {
                 ),
               ),
               FutureBuilder<List<MedicineModel>>(
-                  future: MedicineDataApiService.getAllMedicines(),
+                  future:
+                      MedicineDataApiService.getMedicinesByCategory(categoryId),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      List<MedicineModel> categories = snapshot.data!;
-                      List<MedicineModel> filterMedicines = [];
+                      List<MedicineModel> filterMedicines = snapshot.data ?? [];
 
-                      if (categories.isNotEmpty) {
-                        return ListView.builder(
-                          itemCount: filterMedicines.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Text('${filterMedicines[index].category}');
-                          },
+                      if (filterMedicines.isNotEmpty) {
+                        return Container(
+                          height: 500,
+                          child: ListView.builder(
+                            itemCount: filterMedicines.length,
+                            itemBuilder: (context, index) {
+                              return SizedBox(
+                                  child: Text(
+                                      filterMedicines[index].medicationName ??
+                                          ''));
+                            },
+                          ),
                         );
                       } else if (snapshot.hasError) {
                         return Text('Get Medicines Error');

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/core/helpers/extensions.dart';
+import 'package:flutter_application_2/features/Home/presentation/view/widgets/save.dart';
 
 import '../../../../constants.dart';
 
@@ -8,6 +8,8 @@ class SaveView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final provider = Provider.of<FavoriteProvider>(context);
+    // final words = provider.words;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(100),
@@ -26,6 +28,22 @@ class SaveView extends StatelessWidget {
           ),
         ),
       ),
+      //   body:  ListView.builder(
+      //     itemCount: words.length,
+      //     itemBuilder: (context, index) {
+      //       final word = words[index];
+      //       return ListTile(
+      //         title: Text(word),
+      //         trailing: IconButton(
+      //             onPressed: () {
+      //               provider.toggleFavorite(word);
+      //             },
+      //             icon: provider.isExist(word)
+      //                 ? const Icon(Icons.favorite, color: Colors.blue)
+      //                 : const Icon(Icons.favorite_border)),
+      //       );
+      //     },
+      //   ),
     );
   }
 }
